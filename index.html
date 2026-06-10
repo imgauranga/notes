@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://i.ibb.co/GvtcmWTF/20260610-142950.png' rel='icon' type='image/x-icon'/>
+<link href='https://i.ibb.co/GvtcmWTF/20260610-142950.png' rel='icon' sizes='32x32' type='image/png'/>
+<link href='https://i.ibb.co/GvtcmWTF/20260610-142950.png' rel='icon' sizes='16x16' type='image/png'/>
+  
+  <title>Notebook</title>
+  <style>
+    :root {
+      --bg: #fafafa;
+      --card: #ffffff;
+      --text: #333333;
+      --accent: #ff4757;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+    }
+    .nav {
+      background: var(--card);
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .nav h1 { margin: 0; font-size: 1.8rem; color: var(--accent); }
+    .container {
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .post-card {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+      border: 1px solid #eeeeee;
+    }
+    .post-title {
+      font-size: 1.6rem;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+    .post-meta {
+      font-size: 0.85rem;
+      color: #888888;
+      margin-bottom: 1.5rem;
+    }
+    .post-body {
+      line-height: 1.7;
+      font-size: 1.05rem;
+      white-space: pre-wrap; /* Yeh text ke line-breaks ko barkrar rakhta hai */
+    }
+    .loader { text-align: center; font-size: 1.2rem; color: #666; margin-top: 3rem; }
+    .bi-journal-text{margin-bottom:-3px;}
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <h1><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
+  <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
+  <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/>
+  <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z"/>
+</svg> Notebook</h1>
+  </div>
+
+  <div class="container">
+    <div id="loader" class="loader">Waiting..</div>
+    <div id="blog-posts"></div>
+  </div>
+
+  <script>
+    // ⚠️ APNI DETAILS YAHAN DAALEIN
+    const API_KEY = 'AIzaSyD-7ifcYbg0I4v7l44yo-KfSO7SUNU8W28';
+    const FOLDER_ID = '1f6U9Luvm85-s0ofbdWS0KNIAq75zUWCw';
+
+    const blogContainer = document.getElementById('blog-posts');
+    const loader = document.getElementById('loader');
+
+    async function fetchBlogPosts() {
+      try {
+        // 1. Folder ke andar ki saari .txt files ki list mangwana
+        const listUrl = `https://www.googleapis.com/drive/v3/files?q='${FOLDER_ID}'+in+parents+and+mimeType='text/plain'+and+trashed=false&fields=files(id,name,modifiedTime)&key=${API_KEY}`;
+        
+        const response = await fetch(listUrl);
+        const data = await response.json();
+        
+        if (!data.files || data.files.length === 0) {
+          loader.innerHTML = "Folder mein koi .txt file nahi mili ya folder public nahi hai.";
+          return;
+        }
+
+        // Files ko latest date ke hisab se sort karna
+        data.files.sort((a, b) => new Date(b.modifiedTime) - new Date(a.modifiedTime));
+
+        loader.style.display = 'none';
+
+        // 2. Har file ka andar ka text content download karna
+        for (const file of data.files) {
+          const contentUrl = `https://www.googleapis.com/drive/v3/files/${file.id}?alt=media&key=${API_KEY}`;
+          
+          try {
+            const contentResponse = await fetch(contentUrl);
+            const textContent = await contentResponse.text();
+            
+            // File ke naam se .txt hatakar title banana
+            const title = file.name.replace('.txt', '');
+            const date = new Date(file.modifiedTime).toLocaleDateString('en-US', {
+              day: 'numeric', month: 'short', year: 'numeric'
+            });
+
+            // HTML structure banakar page par jodna
+            const postHTML = `
+              <article class="post-card">
+                <h2 class="post-title">${title}</h2>
+                <div class="post-meta"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
+  <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/>
+  <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+</svg>   Published on ${date}</div>
+                <div class="post-body">${escapeHTML(textContent)}</div>
+              </article>
+            `;
+            blogContainer.innerHTML += postHTML;
+
+          } catch (err) {
+            console.error("File content fetch karne me dikkat hui:", err);
+          }
+        }
+
+      } catch (error) {
+        loader.innerHTML = "Error: Blog posts load nahi ho paye. API Key ya Folder ID check karein.";
+        console.error(error);
+      }
+    }
+
+    // Security ke liye text ko saaf karne ka function (XSS protection)
+    function escapeHTML(str) {
+      return str.replace(/[&<>'"]/g, 
+        tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+      );
+    }
+
+    // Function ko run karna
+    fetchBlogPosts();
+  </script>
+</body>
+</html>
