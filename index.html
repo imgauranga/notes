@@ -1,389 +1,228 @@
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="theme-color" content="#141b2d"/>
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href='https://i.ibb.co/GvtcmWTF/20260610-142950.png' rel='icon' type='image/x-icon'/>
-  <link href='https://i.ibb.co/GvtcmWTF/20260610-142950.png' rel='icon' sizes='32x32' type='image/png'/>
-  <link href='https://i.ibb.co/GvtcmWTF/20260610-142950.png' rel='icon' sizes='16x16' type='image/png'/>    
-  <title>Notebook — By Gauranga</title>
+<!DOCTYPE html><html lang="bn"><head>  <meta charset="UTF-8">  <meta name="theme-color" content="#141b2d"/>  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <link href='https://i.ibb.co/GvtcmWTF/20260610-142950.png' rel='icon' type='image/x-icon'/>  <link href='https://i.ibb.co/GvtcmWTF/20260610-142950.png' rel='icon' sizes='32x32' type='image/png'/>  <link href='https://i.ibb.co/GvtcmWTF/20260610-142950.png' rel='icon' sizes='16x16' type='image/png'/>       <title>Notebook — By Gauranga</title>    <style> select { -webkit-tap-highlight-color: transparent;}    :root {      --bg: #0b0f19;      --card: #141b2d;      --card-hover: #1f2942;      --text-main: #f3f4f6;      --text-muted: #9ca3af;      --accent: #ff4757;      --accent-glow: rgba(255, 71, 87, 0.15);      --gradient: linear-gradient(135deg, #ff4757, #ff6b81);      --border: rgba(255, 255, 255, 0.05);    }
+    body {border-top:0.1 solid #141b2d;       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;       background-color: var(--bg);       color: var(--text-main);       margin: 0;       padding: 0;       min-height: 100vh;       background-image:           radial-gradient(circle at 10% 20%, rgba(255, 71, 87, 0.03) 0%, transparent 40%),        radial-gradient(circle at 90% 80%, rgba(0, 242, 254, 0.02) 0%, transparent 40%);    -webkit-tap-highlight-color: transparent;  -webkit-touch-callout: none; }
+    
+    /* Premium Header */ .nav { background:#141b2d; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 1.2rem 6px; text-align: center; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border); } .nav-container { max-width: 700px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 1rem; }
+    .nav h1 { margin: 0; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.5px; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; gap: 0.5rem; } .bi-journal-text { fill: url(#gradient-fill); margin-bottom: -2px; }
+    
+    /* Premium Dropdown Style */ .filter-wrapper { position: relative; }
+    .year-select { padding: 0.5rem 1rem; font-size: 0.9rem; font-weight: 500; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); background-color: rgba(255, 255, 255, 0.05); color: var(--text-main); cursor: pointer; outline: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); -webkit-appearance: none; -moz-appearance: none; appearance: none; }
+    .year-select:hover, .year-select:focus { border-color: var(--accent); background-color: rgba(255, 255, 255, 0.08); box-shadow: 0 0 12px var(--accent-glow); }
+    .year-select option { background-color: var(--card); color: var(--text-main); }
+
+    .container {       max-width: 700px;       margin: 2.5rem auto;       padding: 0 1rem;     }
+    .post-card {       background: var(--card);       padding: 2.2rem;       border-radius: 16px;       margin-bottom: 2rem;       border: 1px solid var(--border);       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;       animation: fadeIn 0.6s ease-out both;     }
+    .post-card:hover {       transform: translateY(-4px);       border-color: rgba(255, 71, 87, 0.3);       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35), 0 0 15px rgba(255, 71, 87, 0.05);     }
+    .post-title {       font-size: 1.65rem;       font-weight: 700;       margin-top: 0;       margin-bottom: 0.6rem;       color: var(--text-main);       letter-spacing: -0.3px;       line-height: 1.3;     }
+    .post-meta {       font-size: 0.85rem;       color: var(--text-muted);       margin-bottom: 1.8rem;       display: flex;       align-items: center;       justify-content: space-between;     }        .post-meta svg {       color: var(--accent);     }
+    
+    /* Modern SVG Audio Button */
+    .audio-control-btn {       background: var(--gradient);       border: none;       color: white;       width: 36px;       height: 36px;       border-radius: 50%;       cursor: pointer;       display: flex;       align-items: center;       justify-content: center;       box-shadow: 0 4px 10px rgba(255, 71, 87, 0.2);       transition: all 0.2s ease;       padding: 0;    }    .audio-control-btn:hover {       transform: scale(1.08);       box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);     }    .audio-control-btn.playing {       background: #2ed573;       box-shadow: 0 4px 10px rgba(46, 213, 115, 0.2);     }    .audio-control-btn svg {       fill: white;       width: 14px;       height: 14px;       transition: transform 0.1s ease;    }
+    
+    .post-body {       line-height: 1.8;       font-size: 1.05rem;       color: #cbd5e1;       white-space: pre-wrap;     }
+    .hidden { display: none !important; }    @keyframes fadeIn {       from { opacity: 0; transform: translateY(15px); }       to { opacity: 1; transform: translateY(0); }     }
+    .loader {        text-align: center;        font-size: 1.1rem;        color: var(--text-muted);        margin-top: 5rem;       display: flex;       flex-direction: column;       align-items: center;       gap: 1rem;     }        .spinner {       width: 30px;       height: 30px;       border: 3px solid rgba(255,71,87,0.1);       border-radius: 50%;       border-top-color: var(--accent);       animation: spin 1s ease-in-out infinite;     }    @keyframes spin {       to { transform: rotate(360deg); }     }html{-webkit-tap-highlight-color: rgba(255, 255, 255, 0);-webkit-user-select: none;-webkit-touch-callout: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}*::-webkit-scrollbar {display: none; }*::-webkit-resizer {display: none;}html {border-top:0.1px solid #212529;scrollbar-color: rgba(0,0,0,0) white;scrollbar-width: thin;}::-webkit-scrollbar {width: 0px;height: 0px;background-color: white;}::-webkit-scrollbar-thumb {background:rgba(0,0,0,0);border-radius: 0px;}  </style></head><body>
+  <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false"> <linearGradient id="gradient-fill" x1="0%" y1="0%" x2="100%" y2="100%"> <stop offset="0%" stop-color="#ff4757" /> <stop offset="100%" stop-color="#ff6b81" /> </linearGradient> </svg> 
   
-  <style>
-      select {
-    -webkit-tap-highlight-color: transparent;
-}
-    :root {
-      --bg: #0b0f19;
-      --card: #141b2d;
-      --card-hover: #1f2942;
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
-      --accent: #ff4757;
-      --accent-glow: rgba(255, 71, 87, 0.15);
-      --gradient: linear-gradient(135deg, #ff4757, #ff6b81);
-      --border: rgba(255, 255, 255, 0.05);
-    }
-
-    body {border-top:0.1 solid #141b2d;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg);
-      color: var(--text-main);
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      background-image: 
-        radial-gradient(circle at 10% 20%, rgba(255, 71, 87, 0.03) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(0, 242, 254, 0.02) 0%, transparent 40%);
-   -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none; }
-
-    /* Premium Header */
-    .nav {
-      background:#141b2d;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding: 1.2rem 6px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid var(--border);
-    }
-    
-    .nav-container {
-      max-width: 700px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 1rem;
-    }
-
-    .nav h1 { 
-      margin: 0; 
-      font-size: 1.5rem; 
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .bi-journal-text {
-      fill: url(#gradient-fill);
-      margin-bottom: -2px;
-    }
-
-    /* Premium Dropdown Style */
-    .filter-wrapper {
-      position: relative;
-    }
-
-    .year-select {
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
-      font-weight: 500;
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background-color: rgba(255, 255, 255, 0.05);
-      color: var(--text-main);
-      cursor: pointer;
-      outline: none;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-    
-    }
-
-    .year-select:hover, .year-select:focus {
-    
-      border-color: var(--accent);
-      background-color: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 0 12px var(--accent-glow);
-    }
-
-    .year-select option {
-      background-color: var(--card);
-      color: var(--text-main);
-    }
-
-    /* Main Container */
-    .container {
-      max-width: 700px;
-      margin: 2.5rem auto;
-      padding: 0 1rem;
-    }
-
-    /* Premium Post Cards */
-    .post-card {
-      background: var(--card);
-      padding: 2.2rem;
-      border-radius: 16px;
-      margin-bottom: 2rem;
-      border: 1px solid var(--border);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-      animation: fadeIn 0.6s ease-out both;
-    }
-
-    .post-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(255, 71, 87, 0.3);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35), 0 0 15px rgba(255, 71, 87, 0.05);
-    }
-
-    .post-title {
-      font-size: 1.65rem;
-      font-weight: 700;
-      margin-top: 0;
-      margin-bottom: 0.6rem;
-      color: var(--text-main);
-      letter-spacing: -0.3px;
-      line-height: 1.3;
-    }
-
-    .post-meta {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 1.8rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-    
-    .post-meta svg {
-      color: var(--accent);
-    }
-
-    .post-body {
-      line-height: 1.8;
-      font-size: 1.05rem;
-      color: #cbd5e1; /* Smooth grey for highly readable reading experience */
-      white-space: pre-wrap;
-    }
-
-    /* Utilities & Animations */
-    .hidden { display: none !important; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Loader */
-    .loader { 
-      text-align: center; 
-      font-size: 1.1rem; 
-      color: var(--text-muted); 
-      margin-top: 5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-    
-    .spinner {
-      width: 30px;
-      height: 30px;
-      border: 3px solid rgba(255,71,87,0.1);
-      border-radius: 50%;
-      border-top-color: var(--accent);
-      animation: spin 1s ease-in-out infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-html{-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
--webkit-user-select: none;
--webkit-touch-callout: none;
--moz-user-select: none;
--ms-user-select: none;
-user-select: none;}
-*::-webkit-scrollbar {display: none; }*::-webkit-resizer {display: none;}
-/* Firefox */
-html {boder-top:0.1px solid #212529;
-scrollbar-color: rgba(0,0,0,0) white;
-scrollbar-width: thin;
-}
-/* WebKit and Chromiums */
-::-webkit-scrollbar {
-width: 0px;
-height: 0px;
-background-color: white;
-}
-::-webkit-scrollbar-thumb {
-background:rgba(0,0,0,0);
-border-radius: 0px;
-}
-  </style>
-</head>
-<body>
-
-  <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
-    <linearGradient id="gradient-fill" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ff4757" />
-      <stop offset="100%" stop-color="#ff6b81" />
-    </linearGradient>
-  </svg>
-  
-  <div class="nav">    
-    <div class="nav-container">
-      <h1>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="bi bi-journal-text" viewBox="0 0 16 16">  
-          <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>  
-          <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/>  
-          <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z"/>
-        </svg> 
-        Notebook
-      </h1>  
-      
-      <div class="filter-wrapper">
-        <select id="yearFilter" class="year-select" style="display: none;">
-          <option value="all">All Years</option>
-        </select>
-      </div>
-    </div>
+  <div class="nav">        
+    <div class="nav-container">      
+      <h1> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="bi bi-journal-text" viewBox="0 0 16 16"> <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/> <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/> <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z"/> </svg> Notebook </h1> 
+      <div class="filter-wrapper"> <select id="yearFilter" class="year-select" style="display: none;"> <option value="all">All Years</option> </select> </div>
+    </div>  
   </div>
 
-  <div class="container">    
-    <div id="loader" class="loader">
-      <div class="spinner"></div>
-      <span>Securing content...</span>
-    </div>    
-    <div id="blog-posts"></div>  
-  </div>
+  <div class="container">        
+    <div id="loader" class="loader">      
+      <div class="spinner"></div>      
+      <span>Securing content...</span>    
+    </div>        
+    <div id="blog-posts"></div>    
+  </div>  
 
-  <div id='passwordModal' style='position:fixed !important; top:0 !important; left:0 !important; width:100% !important; height:100% !important; background:#0b0f19 !important; z-index:999 !important; display:flex !important; justify-content:center !important; align-items:center !important; font-family:Arial, sans-serif !important;'>
-  <div style='background:#141b2d !important; padding:35px 25px!important; border-radius:12px !important; box-shadow:0px 10px 30px rgba(0,0,0,0.5) !important; text-align:center !important; max-width:380px !important; width:90% !important; box-sizing:border-box !important;'>
-    
-    <h3 style='margin:0 0 15px 0 !important; color:#ffffff !important; font-size:22px !important; font-weight:bold !important;'>Website Locked</h3>
-    <p style='color:#eeeeee !important; font-size:14px !important; margin:0 0 20px 0 !important;'>Enter password visit my personal website</p>
-    
-    <input id='passInput' placeholder='Password' style='width:100% !important; padding:12px !important; color:#121212;margin:0 0 15px 0 !important; border:none!important; border-radius:6px !important; box-sizing:border-box !important; font-size:16px !important; outline:none !important; text-align:center !important; background:#efefef !important; opacity:0.8;' type='password'/>
-    
-    <button onclick='checkCustomPassword()' style='width:100% !important; padding:12px !important; background:#F56779 !important; color:white !important; border:none !important; border-radius:6px !important; font-size:16px !important; font-weight:bold !important; cursor:pointer !important; transition:0.3s !important;'>Visit Now</button>
-    
-    <p id='errorMsg' style='color:#ffffff !important; font-size:13px !important; margin:15px 0 0 0 !important; display:none !important; font-weight:bold !important;'> Wrong Password! </p>
-    
-  </div>
-</div>
 
-    
-  <script>    
-    // ⚠️ APNI DETAILS YAHAN DAALEIN    
-    const API_KEY = 'AIzaSyD-7ifcYbg0I4v7l44yo-KfSO7SUNU8W28';    
+<div id='passwordModal' style='position:fixed !important; top:0 !important; left:0 !important; width:100% !important; height:100% !important; background:#0b0f19 !important; z-index:999 !important; display:flex !important; justify-content:center !important; align-items:center !important; font-family:Arial, sans-serif !important;'> <div style='background:#141b2d !important; padding:35px 25px!important; border-radius:12px !important; box-shadow:0px 10px 30px rgba(0,0,0,0.5) !important; text-align:center !important; max-width:380px !important; width:90% !important; box-sizing:border-box !important;'> <h3 style='margin:0 0 15px 0 !important; color:#ffffff !important; font-size:22px !important; font-weight:bold !important;'>Website Locked</h3> <p style='color:#eeeeee !important; font-size:14px !important; margin:0 0 20px 0 !important;'>Enter password visit my personal website</p> <input id='passInput' placeholder='Password' style='width:100% !important; padding:12px !important; color:#121212;margin:0 0 15px 0 !important; border:none!important; border-radius:6px !important; box-sizing:border-box !important; font-size:16px !important; outline:none !important; text-align:center !important; background:#efefef !important; opacity:0.8;' type='password'/> <button onclick='checkCustomPassword()' style='width:100% !important; padding:12px !important; background:#F56779 !important; color:white !important; border:none !important; border-radius:6px !important; font-size:16px !important; font-weight:bold !important; cursor:pointer !important; transition:0.3s !important;'>Visit Now</button> <p id='errorMsg' style='color:#ffffff !important; font-size:13px !important; margin:15px 0 0 0 !important; display:none !important; font-weight:bold !important;'> Wrong Password! </p> </div></div>
+
+
+
+
+  <script>        
+    const API_KEY = 'AIzaSyD-7ifcYbg0I4v7l44yo-KfSO7SUNU8W28';        
     const FOLDER_ID = '1f6U9Luvm85-s0ofbdWS0KNIAq75zUWCw';
 
-    const blogContainer = document.getElementById('blog-posts');    
-    const loader = document.getElementById('loader');
+    const blogContainer = document.getElementById('blog-posts');        
+    const loader = document.getElementById('loader');    
     const yearFilter = document.getElementById('yearFilter');
+    
+    let currentUtterance = null;    
+    let activePlayButton = null;    
+    let speechDataStore = {}; 
+    let currentPlayingId = null;
 
-    async function fetchBlogPosts() {      
-      try {        
-        const listUrl = `https://www.googleapis.com/drive/v3/files?q='${FOLDER_ID}'+in+parents+and+mimeType='text/plain'+and+trashed=false&fields=files(id,name,modifiedTime)&key=${API_KEY}`;                
-        const response = await fetch(listUrl);        
-        const data = await response.json();                
-        
-        if (!data.files || data.files.length === 0) {          
-          loader.innerHTML = "<span>No posts found or folder is not public.</span>";          
-          return;        
+    // SVG Icons
+    const playIcon = `<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>`;
+    const pauseIcon = `<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
+
+    async function fetchBlogPosts() {            
+      try {                
+        const listUrl = `https://www.googleapis.com/drive/v3/files?q='${FOLDER_ID}'+in+parents+and+mimeType='text/plain'+and+trashed=false&fields=files(id,name,modifiedTime)&key=${API_KEY}`;                        
+        const response = await fetch(listUrl);                
+        const data = await response.json();                                
+        if (!data.files || data.files.length === 0) {                    
+          loader.innerHTML = "<span>No posts found or folder is not public.</span>";                    
+          return;                
         }
-
-        data.files.sort((a, b) => new Date(b.modifiedTime) - new Date(a.modifiedTime));
-        loader.style.display = 'none';
         
+        data.files.sort((a, b) => new Date(b.modifiedTime) - new Date(a.modifiedTime));        
+        loader.style.display = 'none';                
         const availableYears = new Set();
         let animationDelay = 0;
-
-        for (const file of data.files) {          
-          const contentUrl = `https://www.googleapis.com/drive/v3/files/${file.id}?alt=media&key=${API_KEY}`;                    
-          try {            
-            const contentResponse = await fetch(contentUrl);            
-            const textContent = await contentResponse.text();                        
-            
-            const title = file.name.replace('.txt', '');            
-            const dateObj = new Date(file.modifiedTime);
+        
+        for (let i = 0; i < data.files.length; i++) {            
+          const file = data.files[i];            
+          const contentUrl = `https://www.googleapis.com/drive/v3/files/${file.id}?alt=media&key=${API_KEY}`;                              
+          try {                        
+            const contentResponse = await fetch(contentUrl);                        
+            const textContent = await contentResponse.text();                                                
+            const title = file.name.replace('.txt', '');                        
+            const dateObj = new Date(file.modifiedTime);            
             const postYear = dateObj.getFullYear();
             availableYears.add(postYear);
 
-            const date = dateObj.toLocaleDateString('en-US', {              
-              day: 'numeric', month: 'short', year: 'numeric'            
+            const date = dateObj.toLocaleDateString('en-US', {                            
+              day: 'numeric', month: 'short', year: 'numeric'                        
             });
+            
+            const storageId = `speech_${file.id}`;                        
+            speechDataStore[storageId] = textContent;
 
-            // Added dynamic staggered animation delay for a smoother load experience
-            const postHTML = `              
-              <article class="post-card" data-year="${postYear}" style="animation-delay: ${animationDelay}s">                
-                <h2 class="post-title">${title}</h2>                
-                <div class="post-meta">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">  
-                    <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/>  
-                    <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
-                  </svg> ${date}
-                </div>                
-                <div class="post-body">${escapeHTML(textContent)}</div>              
-              </article>            
-            `;            
-            blogContainer.innerHTML += postHTML;
-            animationDelay += 0.1; // cascading entry
+            const postHTML = `                            
+              <article class="post-card" data-year="${postYear}" style="animation-delay: ${animationDelay}s">                                
+                <h2 class="post-title">${title}</h2>                                
+                <div class="post-meta">                  
+                  <span style="display:flex; align-items:center; gap:0.4rem;">                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">                        
+                      <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/>                        
+                      <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>                    
+                    </svg> ${date}                  
+                  </span>                  
+                  <button class="audio-control-btn" onclick="toggleSpeech(this, '${storageId}')">                    
+                    ${playIcon}
+                  </button>                
+                </div>                                
+                <div class="post-body">${escapeHTML(textContent)}</div>                            
+              </article>                        
+            `;                        
+            blogContainer.innerHTML += postHTML;            
+            animationDelay += 0.1;
 
-          } catch (err) {            
-            console.error("Content sync issue:", err);          
-          }        
+          } catch (err) {                        
+            console.error("Content sync issue:", err);                    
+          }                
         }
-
         setupYearFilter(availableYears);
+      } catch (error) {                
+        loader.innerHTML = "<span style='color: #ff4757;'>Error loading notebook configuration. Please verify credentials.</span>";                
+        console.error(error);            
+      }        
+    }
 
-      } catch (error) {        
-        loader.innerHTML = "<span style='color: #ff4757;'>Error loading notebook configuration. Please verify credentials.</span>";        
-        console.error(error);      
+    function toggleSpeech(btn, storageId) {      
+      const text = speechDataStore[storageId] || "";
+      const synth = window.speechSynthesis;
+
+      // स्थिति 1: अगर उसी सेम कार्ड को दोबारा क्लिक किया गया है, तो तुरंत बंद करें
+      if (currentPlayingId === storageId) {
+        synth.cancel();
+        resetActiveButton();
+        return;
+      }
+
+      // स्थिति 2: अगर कोई अन्य ऑडियो चल रहा है, तो पहले उसे रोकें
+      if (synth.speaking || synth.pending) {
+        synth.cancel();
+        resetActiveButton();
+      }
+
+      // ब्राउज़र इंजन को क्लीन होने के लिए 60ms का माइक्रो-डिले दें ताकि री-प्ले हैंग न हो
+      setTimeout(() => {
+        activePlayButton = btn;            
+        currentPlayingId = storageId;
+        currentUtterance = new SpeechSynthesisUtterance(text);      
+
+        if (/[\u0980-\u09FF]/.test(text)) {        
+          currentUtterance.lang = 'bn-IN';         
+          const voices = synth.getVoices();        
+          const banglaVoice = voices.find(voice => voice.lang.startsWith('bn'));        
+          if (banglaVoice) currentUtterance.voice = banglaVoice;        
+        } else if (/[\u0900-\u097F]/.test(text)) {        
+          currentUtterance.lang = 'hi-IN';      
+        } else {        
+          currentUtterance.lang = 'en-US';      
+        }            
+
+        currentUtterance.onend = () => { resetActiveButton(); };
+        currentUtterance.onerror = () => { resetActiveButton(); };
+
+        setPlayingState(btn);
+        synth.speak(currentUtterance);
+      }, 60);
+    }
+
+    function setPlayingState(btn) {
+      btn.innerHTML = pauseIcon;
+      btn.classList.add('playing');
+    }
+
+    function resetActiveButton() {      
+      if (activePlayButton) {        
+        activePlayButton.innerHTML = playIcon;
+        activePlayButton.classList.remove('playing');        
+        activePlayButton = null;      
       }    
+      currentPlayingId = null;
     }
 
-    function setupYearFilter(yearsSet) {
-      const sortedYears = Array.from(yearsSet).sort((a, b) => b - a);
-      
-      sortedYears.forEach(year => {
-        const option = document.createElement('option');
-        option.value = year;
-        option.textContent = year;
-        yearFilter.appendChild(option);
+    function setupYearFilter(yearsSet) { 
+      const sortedYears = Array.from(yearsSet).sort((a, b) => b - a); 
+      sortedYears.forEach(year => { 
+        const option = document.createElement('option'); 
+        option.value = year; 
+        option.textContent = year; 
+        yearFilter.appendChild(option); 
       });
-
       yearFilter.style.display = 'inline-block';
-
-      yearFilter.addEventListener('change', (e) => {
-        const selectedYear = e.target.value;
+      yearFilter.addEventListener('change', (e) => { 
+        if (window.speechSynthesis.speaking) {
+          window.speechSynthesis.cancel();
+          resetActiveButton();
+        }
+        const selectedYear = e.target.value; 
         const posts = document.querySelectorAll('.post-card');
-
-        posts.forEach(post => {
-          const postYear = post.getAttribute('data-year');
-          if (selectedYear === 'all' || postYear === selectedYear) {
-            post.classList.remove('hidden');
-          } else {
-            post.classList.add('hidden');
-          }
-        });
-      });
+        posts.forEach(post => { 
+          const postYear = post.getAttribute('data-year'); 
+          if (selectedYear === 'all' || postYear === selectedYear) { 
+            post.classList.remove('hidden'); 
+          } else { 
+            post.classList.add('hidden'); 
+          } 
+        }); 
+      }); 
     }
 
-    function escapeHTML(str) {      
-      return str.replace(/[&<>'"]/g,         
-        tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)      
-      );    
+    function escapeHTML(str) {            
+      return str.replace(/[&<>'"]/g,                 
+        tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)            
+      );        
+    }
+    
+    if ('speechSynthesis' in window) {      
+      window.speechSynthesis.onvoiceschanged = () => {};    
     }
 
-    fetchBlogPosts();  
-  </script>
-<script>
-document.write(unescape('%0A%3C%73%63%72%69%70%74%20%74%79%70%65%3D%27%74%65%78%74%2F%6A%61%76%61%73%63%72%69%70%74%27%3E%0A%2F%2F%3C%21%5B%43%44%41%54%41%5B%0A%20%20%2F%2F%20%42%72%6F%77%73%65%72%20%48%69%73%74%6F%72%79%20%4C%6F%63%6B%20%28%42%61%63%6B%20%6B%61%72%6E%65%20%70%61%72%20%47%6F%6F%67%6C%65%20%70%61%72%20%62%68%65%6A%65%67%61%29%0A%20%20%77%69%6E%64%6F%77%2E%6F%6E%6C%6F%61%64%20%3D%20%66%75%6E%63%74%69%6F%6E%28%29%20%7B%20%77%69%6E%64%6F%77%2E%68%69%73%74%6F%72%79%2E%70%75%73%68%53%74%61%74%65%28%7B%70%61%67%65%3A%20%31%7D%2C%20%22%22%2C%20%22%22%29%3B%20%7D%3B%0A%20%20%77%69%6E%64%6F%77%2E%6F%6E%70%6F%70%73%74%61%74%65%20%3D%20%66%75%6E%63%74%69%6F%6E%28%65%76%65%6E%74%29%20%7B%0A%20%20%20%20%69%66%20%28%64%6F%63%75%6D%65%6E%74%2E%67%65%74%45%6C%65%6D%65%6E%74%42%79%49%64%28%27%70%61%73%73%77%6F%72%64%4D%6F%64%61%6C%27%29%2E%73%74%79%6C%65%2E%64%69%73%70%6C%61%79%20%21%3D%3D%20%27%6E%6F%6E%65%27%29%20%7B%0A%20%20%20%20%20%20%77%69%6E%64%6F%77%2E%6C%6F%63%61%74%69%6F%6E%2E%68%72%65%66%20%3D%20%22%68%74%74%70%73%3A%2F%2F%66%61%63%65%62%6F%6F%6B%2E%63%6F%6D%2F%69%6D%67%61%75%72%61%6E%67%61%22%3B%0A%20%20%20%20%7D%0A%20%20%7D%3B%0A%0A%20%20%2F%2F%20%31%30%30%25%20%45%72%72%6F%72%2D%46%72%65%65%20%43%68%61%72%61%63%74%65%72%20%43%6F%64%65%20%4D%61%74%63%68%69%6E%67%0A%20%20%66%75%6E%63%74%69%6F%6E%20%63%68%65%63%6B%43%75%73%74%6F%6D%50%61%73%73%77%6F%72%64%28%29%20%7B%0A%20%20%20%20%76%61%72%20%75%73%65%72%49%6E%70%75%74%20%3D%20%64%6F%63%75%6D%65%6E%74%2E%67%65%74%45%6C%65%6D%65%6E%74%42%79%49%64%28%27%70%61%73%73%49%6E%70%75%74%27%29%2E%76%61%6C%75%65%3B%0A%20%20%20%20%76%61%72%20%65%72%72%6F%72%46%69%65%6C%64%20%3D%20%64%6F%63%75%6D%65%6E%74%2E%67%65%74%45%6C%65%6D%65%6E%74%42%79%49%64%28%27%65%72%72%6F%72%4D%73%67%27%29%3B%0A%20%20%20%20%76%61%72%20%73%65%63%72%65%74%41%72%72%20%3D%20%5B%37%36%2C%20%31%31%31%2C%20%31%31%38%2C%20%31%30%31%2C%20%34%39%2C%20%35%32%2C%20%35%31%2C%20%35%30%2C%20%35%33%2C%20%35%32%5D%3B%0A%20%20%20%20%76%61%72%20%69%73%56%61%6C%69%64%20%3D%20%74%72%75%65%3B%0A%20%20%20%20%69%66%20%28%75%73%65%72%49%6E%70%75%74%2E%6C%65%6E%67%74%68%20%21%3D%3D%20%73%65%63%72%65%74%41%72%72%2E%6C%65%6E%67%74%68%29%20%7B%0A%20%20%20%20%20%20%69%73%56%61%6C%69%64%20%3D%20%66%61%6C%73%65%3B%0A%20%20%20%20%7D%20%65%6C%73%65%20%7B%0A%20%20%20%20%20%20%66%6F%72%20%28%76%61%72%20%69%20%3D%20%30%3B%20%69%20%3C%20%75%73%65%72%49%6E%70%75%74%2E%6C%65%6E%67%74%68%3B%20%69%2B%2B%29%20%7B%0A%20%20%20%20%20%20%20%20%69%66%20%28%75%73%65%72%49%6E%70%75%74%2E%63%68%61%72%43%6F%64%65%41%74%28%69%29%20%21%3D%3D%20%73%65%63%72%65%74%41%72%72%5B%69%5D%29%20%7B%0A%20%20%20%20%20%20%20%20%20%20%69%73%56%61%6C%69%64%20%3D%20%66%61%6C%73%65%3B%0A%20%20%20%20%20%20%20%20%20%20%62%72%65%61%6B%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%0A%20%20%20%20%69%66%20%28%69%73%56%61%6C%69%64%29%20%7B%0A%20%20%20%20%20%20%2F%2F%20%53%61%68%69%20%70%61%73%73%77%6F%72%64%20%70%61%72%20%6D%6F%64%61%6C%20%62%61%6E%64%0A%20%20%20%20%20%20%64%6F%63%75%6D%65%6E%74%2E%67%65%74%45%6C%65%6D%65%6E%74%42%79%49%64%28%27%70%61%73%73%77%6F%72%64%4D%6F%64%61%6C%27%29%2E%73%74%79%6C%65%2E%73%65%74%50%72%6F%70%65%72%74%79%28%27%64%69%73%70%6C%61%79%27%2C%20%27%6E%6F%6E%65%27%2C%20%27%69%6D%70%6F%72%74%61%6E%74%27%29%3B%0A%20%20%20%20%7D%20%65%6C%73%65%20%7B%0A%20%20%20%20%20%20%2F%2F%20%47%61%6C%61%74%20%70%61%73%73%77%6F%72%64%20%70%61%72%20%65%72%72%6F%72%0A%20%20%20%20%20%20%65%72%72%6F%72%46%69%65%6C%64%2E%73%74%79%6C%65%2E%73%65%74%50%72%6F%70%65%72%74%79%28%27%64%69%73%70%6C%61%79%27%2C%20%27%62%6C%6F%63%6B%27%2C%20%27%69%6D%70%6F%72%74%61%6E%74%27%29%3B%0A%20%20%20%20%20%20%64%6F%63%75%6D%65%6E%74%2E%67%65%74%45%6C%65%6D%65%6E%74%42%79%49%64%28%27%70%61%73%73%49%6E%70%75%74%27%29%2E%76%61%6C%75%65%20%3D%20%27%27%3B%0A%20%20%20%20%7D%0A%20%20%7D%0A%0A%20%20%2F%2F%20%45%6E%74%65%72%20%6B%65%79%20%73%75%70%70%6F%72%74%0A%20%20%64%6F%63%75%6D%65%6E%74%2E%67%65%74%45%6C%65%6D%65%6E%74%42%79%49%64%28%27%70%61%73%73%49%6E%70%75%74%27%29%2E%61%64%64%45%76%65%6E%74%4C%69%73%74%65%6E%65%72%28%27%6B%65%79%70%72%65%73%73%27%2C%20%66%75%6E%63%74%69%6F%6E%28%65%29%20%7B%0A%20%20%20%20%69%66%20%28%65%2E%6B%65%79%20%3D%3D%3D%20%27%45%6E%74%65%72%27%29%20%7B%20%63%68%65%63%6B%43%75%73%74%6F%6D%50%61%73%73%77%6F%72%64%28%29%3B%20%7D%0A%20%20%7D%29%3B%0A%2F%2F%5D%5D%3E%0A%3C%2F%73%63%72%69%70%74%3E'));
-</script>
+    fetchBlogPosts();    
+  </script>  
   
-</body>
-</html>
+  
+<script>document.write(unescape('%0A%3C%73%63%72%69%70%74%20%74%79%70%65%3D%27%74%65%78%74%2F%6A%61%76%61%73%63%72%69%70%74%27%3E%0A%2F%2F%3C%21%5B%43%44%41%54%41%5B%0A%20%20%2F%2F%20%42%72%6F%77%73%65%72%20%48%69%73%74%6F%72%79%20%4C%6F%63%6B%20%28%42%61%63%6B%20%6B%61%72%6E%65%20%70%61%72%20%47%6F%6F%67%6C%65%20%70%61%72%20%62%68%65%6A%65%67%61%29%0A%20%20%77%69%6E%64%6F%77%2E%6F%6E%6C%6F%61%64%20%3D%20%66%75%6E%63%74%69%6F%6E%28%29%20%7B%20%77%69%6E%64%6F%77%2E%68%69%73%74%6F%72%79%2E%70%75%73%68%53%74%61%74%65%28%7B%70%61%67%65%3A%20%31%7D%2C%20%22%22%2C%20%22%22%29%3B%20%7D%3B%0A%20%20%77%69%6E%64%6F%77%2E%6F%6E%70%6F%70%73%74%61%74%65%20%3D%20%66%75%6E%63%74%69%6F%6E%28%65%76%65%6E%74%29%20%7B%0A%20%20%20%20%69%66%20%28%64%6F%63%75%6D%65%6E%74%2E%67%65%74%45%6C%65%6D%65%6E%74%42%79%49%64%28%27%70%61%73%73%77%6F%72%64%4D%6F%64%61%6C%27%29%2E%73%74%79%6C%65%2E%64%69%73%70%6C%61%79%20%21%3D%3D%20%27%6E%6F%6E%65%27%29%20%7B%0A%20%20%20%20%20%20%77%69%6E%64%6F%77%2E%6C%6F%63%61%74%69%6F%6E%2E%68%72%65%66%20%3D%20%22%68%74%74%70%73%3A%2F%2F%66%61%63%65%62%6F%6F%6B%2E%63%6F%6D%2F%69%6D%67%61%75%72%61%6E%67%61%22%3B%0A%20%20%20%20%7D%0A%20%20%7D%3B%0A%0A%20%20%2F%2F%20%31%30%30%25%20%45%72%72%6F%72%2D%46%72%65%65%20%43%68%61%72%61%63%74%65%72%20%43%6F%64%65%20%4D%61%74%63%68%69%6E%67%0A%20%20%66%75%6E%63%74%69%6F%6E%20%63%68%65%63%6B%43%75%73%74%6F%6D%50%61%73%73%77%6F%72%64%28%29%20%7B%0A%20%20%20%20%76%61%72%20%75%73%65%72%49%6E%70%75%74%20%3D%20%64%6F%63%75%6D%65%6E%74%2E%67%65%74%45%6C%65%6D%65%6E%74%42%79%49%64%28%27%70%61%73%73%49%6E%70%75%74%27%29%2E%76%61%6C%75%65%3B%0A%20%20%20%20%76%61%72%20%65%72%72%6F%72%46%69%65%6C%64%20%3D%20%64%6F%63%75%6D%65%6E%74%2E%67%65%74%45%6C%65%6D%65%6E%74%42%79%49%64%28%27%65%72%72%6F%72%4D%73%67%27%29%3B%0A%20%20%20%20%76%61%72%20%73%65%63%72%65%74%41%72%72%20%3D%20%5B%37%36%2C%20%31%31%31%2C%20%31%31%38%2C%20%31%30%31%2C%20%34%39%2C%20%35%32%2C%20%35%31%2C%20%35%30%2C%20%35%33%2C%20%35%32%5D%3B%0A%20%20%20%20%76%61%72%20%69%73%56%61%6C%69%64%20%3D%20%74%72%75%65%3B%0A%20%20%20%20%69%66%20%28%75%73%65%72%49%6E%70%75%74%2E%6C%65%6E%67%74%68%20%21%3D%3D%20%73%65%63%72%65%74%41%72%72%2E%6C%65%6E%67%74%68%29%20%7B%0A%20%20%20%20%20%20%69%73%56%61%6C%69%64%20%3D%20%66%61%6C%73%65%3B%0A%20%20%20%20%7D%20%65%6C%73%65%20%7B%0A%20%20%20%20%20%20%66%6F%72%20%28%76%61%72%20%69%20%3D%20%30%3B%20%69%20%3C%20%75%73%65%72%49%6E%70%75%74%2E%6C%65%6E%67%74%68%3B%20%69%2B%2B%29%20%7B%0A%20%20%20%20%20%20%20%20%69%66%20%28%75%73%65%72%49%6E%70%75%74%2E%63%68%61%72%43%6F%64%65%41%74%28%69%29%20%21%3D%3D%20%73%65%63%72%65%74%41%72%72%5B%69%5D%29%20%7B%0A%20%20%20%20%20%20%20%20%20%20%69%73%56%61%6C%69%64%20%3D%20%66%61%6C%73%65%3B%0A%20%20%20%20%20%20%20%20%20%20%62%72%65%61%6B%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%0A%20%20%20%20%69%66%20%28%69%73%56%61%6C%69%64%29%20%7B%0A%20%20%20%20%20%20%2F%2F%20%53%61%68%69%20%70%61%73%73%77%6F%72%64%20%70%61%72%20%6D%6F%64%61%6C%20%62%61%6E%64%0A%20%20%20%20%20%20%64%6F%63%75%6D%65%6E%74%2E%67%65%74%45%6C%65%6D%65%6E%74%42%79%49%64%28%27%70%61%73%73%77%6F%72%64%4D%6F%64%61%6C%27%29%2E%73%74%79%6C%65%2E%73%65%74%50%72%6F%70%65%72%74%79%28%27%64%69%73%70%6C%61%79%27%2C%20%27%6E%6F%6E%65%27%2C%20%27%69%6D%70%6F%72%74%61%6E%74%27%29%3B%0A%20%20%20%20%7D%20%65%6C%73%65%20%7B%0A%20%20%20%20%20%20%2F%2F%20%47%61%6C%61%74%20%70%61%73%73%77%6F%72%64%20%70%61%72%20%65%72%72%6F%72%0A%20%20%20%20%20%20%65%72%72%6F%72%46%69%65%6C%64%2E%73%74%79%6C%65%2E%73%65%74%50%72%6F%70%65%72%74%79%28%27%64%69%73%70%6C%61%79%27%2C%20%27%62%6C%6F%63%6B%27%2C%20%27%69%6D%70%6F%72%74%61%6E%74%27%29%3B%0A%20%20%20%20%20%20%64%6F%63%75%6D%65%6E%74%2E%67%65%74%45%6C%65%6D%65%6E%74%42%79%49%64%28%27%70%61%73%73%49%6E%70%75%74%27%29%2E%76%61%6C%75%65%20%3D%20%27%27%3B%0A%20%20%20%20%7D%0A%20%20%7D%0A%0A%20%20%2F%2F%20%45%6E%74%65%72%20%6B%65%79%20%73%75%70%70%6F%72%74%0A%20%20%64%6F%63%75%6D%65%6E%74%2E%67%65%74%45%6C%65%6D%65%6E%74%42%79%49%64%28%27%70%61%73%73%49%6E%70%75%74%27%29%2E%61%64%64%45%76%65%6E%74%4C%69%73%74%65%6E%65%72%28%27%6B%65%79%70%72%65%73%73%27%2C%20%66%75%6E%63%74%69%6F%6E%28%65%29%20%7B%0A%20%20%20%20%69%66%20%28%65%2E%6B%65%79%20%3D%3D%3D%20%27%45%6E%74%65%72%27%29%20%7B%20%63%68%65%63%6B%43%75%73%74%6F%6D%50%61%73%73%77%6F%72%64%28%29%3B%20%7D%0A%20%20%7D%29%3B%0A%2F%2F%5D%5D%3E%0A%3C%2F%73%63%72%69%70%74%3E'));</script>
+  
+  
+</body></html>
